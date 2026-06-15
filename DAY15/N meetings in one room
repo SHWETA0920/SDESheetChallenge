@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int maxMeetings(vector<int>& start, vector<int>& end) {
+        int n = start.size();
+        vector<pair<int,int>> v;
+        for(int i = 0; i < n; i++) {
+            v.push_back({end[i], start[i]}); 
+        }
+        sort(v.begin(), v.end());
+        int c = 1;
+        int last_end = v[0].first; 
+        for(int i = 1; i < n; i++) {
+            if(v[i].second > last_end) { 
+                c++;
+                last_end = v[i].first;
+            }
+        }
+
+        return c;
+    }
+};
